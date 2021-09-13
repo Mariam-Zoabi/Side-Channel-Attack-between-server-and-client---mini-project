@@ -1,0 +1,3 @@
+Compare the bytes of the password and the decrpyted password:
+Password's 133 byte is the same in decrypt and in the original password (w)
+Password's 228 byte is the same in decrypt and in the original password (j)

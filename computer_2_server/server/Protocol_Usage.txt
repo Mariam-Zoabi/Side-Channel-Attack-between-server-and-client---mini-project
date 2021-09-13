@@ -1,0 +1,29 @@
+Usage:
+        enc <message>                           Will tell the server to encrypt the message (using his public key)
+                                                and send back the corresponding ciphertext.
+                                                The result format will be: <number of bytes>\0<ciphertext bytes>
+                                                In case of an error:
+                                                        ERROR_1 Space must separate between "enc" and the message.
+                                                        ERROR_2 Message can't be of length 0.
+                                                        ERROR_3 Server side error, will shutdown the server.
+
+        dec <number of bytes>\0<ciphertext>     Will tell the server to decrypt the ciphertext (using his private key)
+                                                and send back "DONE" once he is finished.
+                                                Note: he will not send back the decrypted message or info about it failing.
+                                                In case of an error:
+                                                        ERROR_1 Space must separate between "dec" and the ciphertext.
+                                                        ERROR_2 Ciphertext size must be positive integer.
+                                                        ERROR_3 Server side error, will shutdown the server.
+
+        genkey                                  Will tell the server to delete his current private/public key pair and create new set.
+                                                Will send back "DONE" once he is finished.
+                                                In case of an error, will return "ERROR" and shutdown.
+
+        pubinfo                                 Will ask the server to return the modulus and exponent of the public key.
+                                                The result format will be:
+                                                        <exponent number of bytes>\0<exponent in hex without 0x prefix>\0<modulus number of bytes>\0<modulus in dec>
+                                                In case of an error, will return "ERROR" and shutdown.
+
+        exit                                    Disconnect the client.
+
+        shutdown                                Disconnect the client and shutdown the server.
